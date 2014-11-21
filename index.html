@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <title>ceshi</title>
+    <link rel="stylesheet" href="css/jsplumb.css" />
+    <script type="text/javascript" src="dom.jsPlumb-1.6.4-min.js"></script>
+    <script type="text/javascript" src="sexrytopology.js"></script>
+    <script type="text/javascript" src="sexrymenu.js"></script>
+    <style type="text/css">
+        @import "sexrytopology.css";
+        @import "sexrymenu.css";
+    </style>
+</head>
+
+<body>
+
+<style type="text/css">
+    .object{
+        width:180px;
+        height: 280px;
+        border: 1px solid red;
+    }
+    .topology-head{
+        width: 180px;
+        height: 240px;
+        background-color: blue;
+    }
+    .topology-foot{
+        width: 180px;
+        height: 40px;
+        background-color: gray;
+        text-align: center;
+    }
+    .topology-words{
+        padding-top:10px;
+    }
+</style>
+<script type="text/javascript">
+    /*function test(){
+     var menutext = document.getElementById('menu');
+     var allchild = menutext.getElementsByTagName('li');
+     var computedStyle = document.defaultView.getComputedStyle(allchild[0],null);
+     var fontsize = computedStyle.fontSize;
+     var length = allchild[0].innerHTML.length;
+     var fontsize = fontsize.substr(0,fontsize.length-2);
+     console.log(fontsize);
+     var width = fontsize * length;
+     console.log(width);
+     }*/
+    /*	document.body.addEventListener("mousedown",function(event){
+     var dom = document.getElementById('menu');
+     if (event.button == 2) {
+     console.log("鼠标位置:"+event.x+":"+event.y);
+     console.warn(dom);
+     dom.style.left = event.x +"px";
+     dom.style.top = event.y +"px";
+     if(dom.style.display == 'block')
+     dom.style.display = 'none';
+     else
+     dom.style.display = 'block';
+     };
+     if(event.button == 0 && dom.style.display == 'block')
+     dom.style.display = 'none';
+     },false);
+     //中键滚动，菜单消失
+     document.body.addEventListener("mousewheel",function(event){
+     var dom = document.getElementById('menu');
+     dom.style.display ='none';
+     },false);*/
+
+    //  var men1  = new SexryMenu();
+    //console.log(document.readyState);
+    //var menu1 = new SexryMenu();
+    //var menu2 = new SexryMenu();
+    var items =['新增父节点','新增子节点','删除本节点','查看详细信息'];
+    var items1 =['新增父节点1','新增子节点1','删除本节点1','查看详细信息1'];
+    var menu = SexryMenu.wrapMenwFromStringArray(items,items1);
+    //console.log(menu);
+
+
+
+    var array = new Array();
+    var imgurl = "images/obj.jpg";
+    array[0] = {"id":1,"level":0,"parentId":0,"name":"1","imgUrl":imgurl,"type":1};
+    array[1] = {"id":100,"level":1,"parentId":1,"name":"100","imgUrl":imgurl,"type":1};
+    array[2] = {"id":101,"level":1,"parentId":1,"name":"101","imgUrl":imgurl,"type":1};
+    array[3] = {"id":102,"level":2,"parentId":101,"name":"102","imgUrl":imgurl,"type":1};
+    array[4] = {"id":103,"level":3,"parentId":102,"name":"103","imgUrl":imgurl,"type":1};
+    array[5] = {"id":104,"level":3,"parentId":102,"name":"104","imgUrl":imgurl,"type":1};
+    array[6] = {"id":105,"level":2,"parentId":101,"name":"105","imgUrl":imgurl,"type":1};
+    array[7] = {"id":106,"level":3,"parentId":105,"name":"106","imgUrl":imgurl,"type":1};
+    array[8] = {"id":107,"level":3,"parentId":105,"name":"107","imgUrl":imgurl,"type":1};
+    array[9] = {"id":108,"level":2,"parentId":101,"name":"108","imgUrl":imgurl,"type":1};
+    array[10]= {"id":109,"level":4,"parentId":106,"name":"109","imgUrl":imgurl,"type":1};
+    array[11]= {"id":110,"level":4,"parentId":106,"name":"110","imgUrl":imgurl,"type":1};
+    array[12]= {"id":111,"level":2,"parentId":100,"name":"111","imgUrl":imgurl,"type":1};
+    array[13]= {"id":112,"level":2,"parentId":100,"name":"112","imgUrl":imgurl,"type":1};
+    array[14]= {"id":113,"level":3,"parentId":111,"name":"113","imgUrl":imgurl,"type":1};
+    array[15]= {"id":114,"level":4,"parentId":113,"name":"114","imgUrl":imgurl,"type":1};
+    // console.log("maxLevel:"+sexrytopology.getMaxLevel());
+    //var objectslevel = sexrytopology.getLevelObjects(3);
+    // console.log(objectslevel);
+
+    //var result = sexrytopology.deploy();
+
+    //console.log(objects);
+    // sexrytopology.sortByParentId(objects);
+    //  console.log(objects);
+    //  var obj = sexrytopology.getTopologyObject(104);
+    //  console.log(obj);
+
+    jsPlumb.ready(function(){
+        //禁用浏览器默认右键菜单
+        //document.oncontextmenu = function(){return false;};
+
+        var sexrytopology = new SexryTopology("test", array);
+        sexrytopology.draw();
+        //click 不能检测出
+        var  topology ;
+
+        sexrytopology.allAddEvent("mouseup", function(self){
+            //this 是一个div对象
+            //console.log(self);
+            topology = self;
+            menu.doMenu();
+        });
+        menu.setOnClickListener(function(item){
+                switch(item.group){
+                    case 0:
+                       switch(item.itemId){
+                           case 0:
+                               addNewParent(topology);
+                               break;
+                           case 1:
+                               addNewChild(topology);
+                               break;
+                           case 2:
+                               deleteThisNode(topology);
+                               break;
+                           case 3:
+                                lookupInfo(topology);
+                               break;
+                        }
+                        break;
+                    case 1:
+
+                        break;
+                }//switch
+             });
+
+
+        function addNewParent(obj){
+           // console.log(obj);
+                menu.hide();
+            //insert code here
+
+        }
+        function addNewChild(obj){
+            //console.log(obj);
+            menu.hide();
+            //insert code here
+        }
+        function deleteThisNode(obj){
+           // console.log(obj);
+            menu.hide();
+            //insert code here
+            sexrytopology.deleteNode(obj,false);
+        }
+        function lookupInfo(obj){
+          //  console.log(obj);
+            menu.hide();
+            //insert code here
+        }
+
+    });
+
+
+    //创建div
+    //绑定事件
+    //var array = new Array();
+    //array.push(args);
+    //array.push(args2);
+    //var topology = new SexryTopology("test",array);
+    //var info = topology.getContainerInfo();
+    //var obj = topology.initObject(args);
+    //var obj1 = topology.initObject(args2);
+    //topology.addEvent(obj,"click", function(){console.log("click："+obj.object.x+":"+obj.object.y);});
+
+    //function test()
+    //{
+    //	obj.object.updatePosition(500,600);
+    //}
+
+    /*jsPlumb.ready(function() {
+     var firstInstance = null;
+     firstInstance = jsPlumb.getInstance({
+     PaintStyle:{ //连线的样式
+     lineWidth:1,
+     strokeStyle:"#236245",
+     outlineColor:"#236345",
+     outlineWidth:1
+     },
+
+     //Overlays:[["Arrow",{location:1}]],
+     DragOptions:{cursor:"crosshair"}, //可拖拽的鼠标样式
+     Anchors:["Continuous","Continuous"], //连接的两个点的在object上的位置，这里选择智能选择
+     Connector:[ "Flowchart",{stub:[60,10]}], //连线方式,gap起点到div的间距
+     // Connector:["Straight"],
+     Endpoint:[ "Dot",{radius:1}],   //连接线的终点样式,Rectangle Dot Blank Image
+     EndpointStyle : { fillStyle: "#545953"  },
+     //Anchors : ["AutoDefault","AutoDefault"]
+     //container:"readytogo"
+     });
+     var windows = jsPlumb.getSelector(".sexrytopology");
+     // initialise draggable elements.
+     firstInstance.draggable(windows);
+     });
+     */
+</script>
+<!--
+	<div class="object" onclick="alert('fuck');">  
+	  <!--xianshi tu pian-->
+<!--	<div class="topology-head">
+
+    </div>
+ <!--xian shi ming cheng-->
+<!--	<div class="topology-foot">
+        <div  class="topology-words"><i>objectName</i></div>
+    </div>
+</div>
+-->
+<div id="test" style="position:relative;width:1260px;height:1180px;"></div>
+
+<button onclick="test();">测试</button>
+
+<div id="menu" style="display:none;position:relative;z-index: 100">
+    <ul style="color:red;background-color:yellow;width:80px;">
+        <li>测试100</li>
+        <li>测试2001</li>
+        <li>测试2002</li>
+        <li>测试2003</li>
+        <li>测试2004</li>
+    </ul>
+</div>
+
+</body>
+
+</html>
