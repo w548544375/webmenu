@@ -1,0 +1,28 @@
+/*
+* menu的样式
+*
+**/
+/**menu的样式   **/
+.sexrymenu
+{
+    text-align: center;
+    font-size:16px;
+    box-shadow: 2px 2px 5px black; //添加阴影 前面2个是xy的便宜，后面是范围
+-moz-box-shadow: 2px 2px 5px black;
+    -o-box-shadow:2px 2px 5px black;
+    --webkit-box-shadow: 2px 2px 5px black;
+    background-color: yellow;
+    left:1300px;
+    top:30px;
+}
+
+.sexrymenu ul li
+{
+    cursor: pointer;
+    border:1px solid red;
+}
+
+.sexrymenu ul li:hover
+{
+    background-color: green;
+}
