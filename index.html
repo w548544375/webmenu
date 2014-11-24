@@ -73,7 +73,7 @@
     //console.log(document.readyState);
     //var menu1 = new SexryMenu();
     //var menu2 = new SexryMenu();
-    var items =['新增父节点','新增子节点','删除本节点','查看详细信息'];
+    var items =['新增父节点','新增子节点','删除所有子节点','删除本节点','查看详细信息'];
     var items1 =['新增父节点1','新增子节点1','删除本节点1','查看详细信息1'];
     var menu = SexryMenu.wrapMenwFromStringArray(items,items1);
     //console.log(menu);
@@ -136,10 +136,10 @@
                                addNewChild(topology);
                                break;
                            case 2:
-                               deleteThisNode(topology);
+                               deleteAllChildNode(topology);
                                break;
                            case 3:
-                                lookupInfo(topology);
+                               deleteThisNode(topology);
                                break;
                         }
                         break;
@@ -161,6 +161,11 @@
             menu.hide();
             //insert code here
         }
+        function deleteAllChildNode(obj){
+            menu.hide();
+            sexrytopology.deleteNode(obj,true);
+        }
+
         function deleteThisNode(obj){
            // console.log(obj);
             menu.hide();
