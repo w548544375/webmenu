@@ -4,9 +4,12 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8" />
     <title>ceshi</title>
     <link rel="stylesheet" href="css/jsplumb.css" />
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css"/>
     <script type="text/javascript" src="dom.jsPlumb-1.6.4-min.js"></script>
     <script type="text/javascript" src="sexrytopology.js"></script>
     <script type="text/javascript" src="sexrymenu.js"></script>
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     <style type="text/css">
         @import "sexrytopology.css";
         @import "sexrymenu.css";
@@ -141,6 +144,9 @@
                            case 3:
                                deleteThisNode(topology);
                                break;
+                           case 4:
+                               lookupInfo(topology);
+                               break;
                         }
                         break;
                     case 1:
@@ -175,6 +181,7 @@
         function lookupInfo(obj){
           //  console.log(obj);
             menu.hide();
+            $("#modal1").modal();
             //insert code here
         }
 
@@ -236,17 +243,21 @@
 </div>
 -->
 <div id="test" style="position:relative;width:1260px;height:1180px;"></div>
+<div id="modal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="myLargeModalLabel">Detail</h4>
+            </div>
+            <div class="modal-body">
 
-<button onclick="test();">测试</button>
-
-<div id="menu" style="display:none;position:relative;z-index: 100">
-    <ul style="color:red;background-color:yellow;width:80px;">
-        <li>测试100</li>
-        <li>测试2001</li>
-        <li>测试2002</li>
-        <li>测试2003</li>
-        <li>测试2004</li>
-    </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger">Confirm</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
