@@ -118,6 +118,8 @@
         //document.oncontextmenu = function(){return false;};
 
         var sexrytopology = new SexryTopology("test", array);
+        sexrytopology.wrapFromArray(array);
+       // sexrytopology.wrapFromXML("example.xml");
         sexrytopology.draw();
         //click 不能检测出
         var  topology ;
