@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!--type 0:监控服务器 1:路由器 2:交换机 3：监控电脑-->
+<root>
+  <Node id="1" name="监控服务器">
+      <level>0</level>
+      <ParentNode>0</ParentNode>
+      <Type>0</Type>
+      <Info>Object1</Info>
+  </Node>
+    <Node id="100" name="100">
+        <level>1</level>
+        <ParentNode>1</ParentNode>
+        <Type>1</Type>
+        <Info>Object1</Info>
+    </Node>
+    <Node id="101" name="101">
+        <level>1</level>
+        <ParentNode>1</ParentNode>
+        <Type>1</Type>
+        <Info>Object101</Info>
+    </Node>
+    <Node id="102" name="102">
+        <level>2</level>
+        <ParentNode>101</ParentNode>
+        <Type>2</Type>
+        <Info>Object102</Info>
+    </Node>
+    <Node id="103" name="103">
+        <level>3</level>
+        <ParentNode>102</ParentNode>
+        <Type>2</Type>
+        <Info>Object103</Info>
+    </Node>
+    <Node id="104" name="104">
+        <level>3</level>
+        <ParentNode>102</ParentNode>
+        <Type>3</Type>
+        <Info>Object102</Info>
+    </Node>
+    <Node id="105" name="105">
+        <level>2</level>
+        <ParentNode>101</ParentNode>
+        <Type>2</Type>
+        <Info>Object102</Info>
+    </Node>
+    <Node id="106" name="106">
+        <level>3</level>
+        <ParentNode>105</ParentNode>
+        <Type>2</Type>
+        <Info>Object102</Info>
+    </Node>
+    <Node id="107" name="107">
+        <level>3</level>
+        <ParentNode>105</ParentNode>
+        <Type>3</Type>
+        <Info>Object102</Info>
+    </Node>
+    <Node id="108" name="108">
+        <level>2</level>
+        <ParentNode>101</ParentNode>
+        <Type>2</Type>
+        <Info>Object102</Info>
+    </Node>
+    <Node id="109" name="109">
+        <level>4</level>
+        <ParentNode>106</ParentNode>
+        <Type>2</Type>
+        <Info>Object102</Info>
+    </Node>
+    <Node id="110" name="110">
+        <level>4</level>
+        <ParentNode>106</ParentNode>
+        <Type>3</Type>
+        <Info>Object102</Info>
+    </Node>
+    <Node id="111" name="111">
+        <level>2</level>
+        <ParentNode>100</ParentNode>
+        <Type>2</Type>
+        <Info>Object102</Info>
+    </Node>
+    <Node id="112" name="112">
+        <level>2</level>
+        <ParentNode>100</ParentNode>
+        <Type>2</Type>
+        <Info>Object102</Info>
+    </Node>
+    <Node id="113" name="113">
+        <level>3</level>
+        <ParentNode>111</ParentNode>
+        <Type>2</Type>
+        <Info>Object102</Info>
+    </Node>
+    <Node id="114" name="114">
+        <level>4</level>
+        <ParentNode>113</ParentNode>
+        <Type>2</Type>
+        <Info>Object102</Info>
+    </Node>
+</root>
